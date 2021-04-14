@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "HW from Unit 10 Object Oriented Programming",
   "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test" 
+  },
   "scripts": {
     "test": "jest --verbose test/*"
   },
