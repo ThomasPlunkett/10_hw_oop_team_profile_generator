@@ -1,5 +1,12 @@
 // THIS IS WHERE MY MAIN LOGIC WILL LIE
 
+// You would first REQUIRE all the files and node packages needed
+//Engineer, 
+
+// BECAUSE I'M PUTTING page-template.js IN ANOTHER FOLDER (src),  
+// REQUIRE that page-template.js
+const pageTemplate = require('./src/page-template.js');
+
 // INDEX FILES ARE CONSIDERED THE ENTRY POINT TO MY APPLICATION
 
 // IF THIS IS YOUR ENTRY POINT, I MUST DO INQUIRER HERE
