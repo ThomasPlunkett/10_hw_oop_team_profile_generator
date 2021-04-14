@@ -1,0 +1,24 @@
+{
+  "name": "10_hw_oop_team_profile_generator",
+  "version": "1.0.0",
+  "description": "HW from Unit 10 Object Oriented Programming",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThomasPlunkett/10_hw_oop_team_profile_generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ThomasPlunkett/10_hw_oop_team_profile_generator/issues"
+  },
+  "homepage": "https://github.com/ThomasPlunkett/10_hw_oop_team_profile_generator#readme",
+  "dependencies": {
+    "inquirer": "^8.0.0",
+    "jest": "^26.6.3"
+  }
+}
