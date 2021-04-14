@@ -6,6 +6,8 @@
 // BECAUSE I'M PUTTING page-template.js IN ANOTHER FOLDER (src),  
 // REQUIRE that page-template.js
 const pageTemplate = require('./src/page-template.js');
+// USE pageTemplate as a function, which can ACCEPT a parameter
+pageTemplate(team);
 
 // INDEX FILES ARE CONSIDERED THE ENTRY POINT TO MY APPLICATION
 
