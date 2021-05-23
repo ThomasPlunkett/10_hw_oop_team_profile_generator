@@ -16,38 +16,43 @@ pageTemplate(team);
 
 // OUTPUT HTML FILES WILL LAND IN DIST FOLDER
 const membersArray = [];
-
+// function to createManager
+// also need functions to createEngineer and createIntern
 function runApp() {
-    inquirer.prompt([
-        {
-            type: 'input',
-            name: 'managerName',
-            message: "What is your team manager's name?",
-        },
-        {
-            type: 'input',
-            name: 'managerId',
-            message: "What is the team manager's id?",
-        },
-        {
-            type: 'input',
-            name: 'managerEmail',
-            message: "What is the team manager's email?",
-        },
-        {
-            type: 'input',
-            name: 'managerOfficeNumber',
-            message: "What is your team manager's office number?",
-        },
-    ]).then(answers => {
-        // I need to store this info based on manager, engineer, and intern
-        // so that I can call this information later on
-        console.log(answers);
-        const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNum);
-        console.log(manager);
-        membersArray.push(manager);
-        console.log(membersArray);
-    })
+    function createManager() {
+        inquirer.prompt([
+            {
+                type: 'input',
+                name: 'managerName',
+                message: "What is your team manager's name?",
+            },
+            {
+                type: 'input',
+                name: 'managerId',
+                message: "What is the team manager's id?",
+            },
+            {
+                type: 'input',
+                name: 'managerEmail',
+                message: "What is the team manager's email?",
+            },
+            {
+                type: 'input',
+                name: 'managerOfficeNumber',
+                message: "What is your team manager's office number?",
+            },
+        ]).then(answers => {
+            // I need to store this info based on manager, engineer, and intern
+            // so that I can call this information later on
+            console.log(answers);
+            const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNum);
+            console.log(manager);
+            membersArray.push(manager);
+            console.log(membersArray);
+        })
+    }
+
+    
 }
 
 runApp();
