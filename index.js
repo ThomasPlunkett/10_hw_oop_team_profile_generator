@@ -5,6 +5,7 @@
 // BECAUSE I'M PUTTING page-template.js IN ANOTHER FOLDER (src),  
 // REQUIRE that page-template.js
 const inquirer = require('inquirer');
+const Manager = require('./lib/Manager');
 const pageTemplate = require('./src/page-template.js');
 // USE pageTemplate as a function, which can ACCEPT a parameter
 pageTemplate(team);
