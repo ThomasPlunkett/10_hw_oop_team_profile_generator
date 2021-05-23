@@ -47,15 +47,72 @@ function runApp() {
                 name: 'managerOfficeNumber',
                 message: "What is your team manager's office number?",
             },
-        ]).then(answers => {
+            {
+                type: 'list',
+                name: 'chooseType',
+                message: 'Would you like to add an Engineer, an Intern, or end the program?',
+                choices: ['Add an Engineer', 'Add an Intern', 'End the program'],
+            }])
+            .then(answers => {
             // I need to store this info based on manager, engineer, and intern
             // so that I can call this information later on
             // console.log(answers);
             const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNum);
             // console.log(manager);
             membersArray.push(manager);
-            console.log(membersArray);
+
+            if (answers.chooseType === "Add an Engineer") {
+                addEngineer();
+            } else if (answers.chooseType === "Add an Intern") {
+                addIntern();
+            } else if (answers.chooseType === "End the Program") {
+                endProgram();
+            }
+            // console.log(membersArray);
         })
+    }
+    function createEngineer() {
+        inquirer.prompt([
+            {
+                type: 'input',
+                name: 'engineerName',
+                message: "What is the engineer's name?",
+            },
+            {
+                type: 'input',
+                name: 'engineerId',
+                message: "What is the engineer's id?",
+            },
+            {
+                type: 'input',
+                name: 'engineerEmail',
+                message: "What is the engineer's email?",
+            },
+            {
+                type: 'input',
+                name: 'engineerGitHub',
+                message: "What is the engineer's GitHub username?",
+            },
+            {
+                type: 'list',
+                name: 'chooseType',
+                message: 'Would you like to add an Engineer, an Intern, or end the program?',
+                choices: ['Add an Engineer', 'Add an Intern', 'End the program'],
+            }])
+            // console.log("addEngineer was called");
+            .then((answers) => {
+                const engineer = new Engineer(answers.engineerName, answers.engineerID, answers.engineerEmail, answers.engineerGitHub);
+    
+                team.push(engineer);
+    
+                if (answers.chooseType === "Add an Engineer") {
+                    addEngineer();
+                } else if (answers.chooseType === "Add an Intern") {
+                    addIntern();
+                } else if (answers.chooseType === "End the Program") {
+                    endProgram();
+                }
+            })
     }
 
         function buildTeam() {
