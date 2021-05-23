@@ -6,6 +6,8 @@
 // REQUIRE that page-template.js
 const inquirer = require('inquirer');
 const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
 const render = require('./src/page-template.js');
 const path = require("path");
 const fs = require("fs");
@@ -16,14 +18,19 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 // USE pageTemplate as a function, which can ACCEPT a parameter
 pageTemplate(team);
 
-// THIS FILE IS THE ENTRY POINT TO MY APPLICATION. THEREFORE, I MUST DO INQUIRER HERE
-
 // FS WRITEFILE
+function buildTeam() {
+    // Create the output directory if the output path doesn't exist
+    if (!fs.existsSync(OUTPUT_DIR)) {
+        fs.mkdirSync(OUTPUT_DIR)
+    }
+    fs.writeFileSync(outputPath, render(membersArray), "utf-8");
+}
+buildTeam();
 
 // OUTPUT HTML FILES WILL LAND IN DIST FOLDER
 const membersArray = [];
 // function to createManager
-// also need functions to createEngineer and createIntern
 function runApp() {
     function createManager() {
         inquirer.prompt([
@@ -71,6 +78,7 @@ function runApp() {
             // console.log(membersArray);
         })
     }
+    // function to createEngineer
     function createEngineer() {
         inquirer.prompt([
             {
@@ -114,15 +122,56 @@ function runApp() {
                 }
             })
     }
-
-        function buildTeam() {
-            // Create the output directory if the output path doesn't exist
-            if (!fs.existsSync(OUTPUT_DIR)) {
-                fs.mkdirSync(OUTPUT_DIR)
-            }
-            fs.writeFileSync(outputPath, render(membersArray), "utf-8");
-        }
-        buildTeam();
+    // function to createIntern
+    function createIntern () {
+        inquirer.prompt([
+            {
+                type: 'input',
+                name: 'internName',
+                message: "What is the intern's name?",
+            },
+            {
+                type: 'input',
+                name: 'internID',
+                message: "What is the intern's Id?",
+            },
+            {
+                type: 'input',
+                name: 'internEmail',
+                message: "What is the intern's email?",
+            },
+            {
+                type: 'input',
+                name: 'internSchool',
+                message: "What is the intern's school name?",
+            },
+            {
+                type: 'list',
+                name: 'chooseType',
+                message: 'Would you like to add an Engineer, an Intern, or end the program?',
+                choices: ['Add an Engineer', 'Add an Intern', 'End the program'],
+            }])
+            
+            .then((answers) => {
+                const intern = new Intern(answers.internName, answers.internID, answers.internEmail, answers.internSchool);
+    
+                membersArray.push(intern);
+    
+                if (answers.chooseType === "Add an Engineer") {
+                    addEngineer();
+                } else if (answers.chooseType === "Add an Intern") {
+                    addIntern();
+                } else if (answers.chooseType === "End the program") {
+                    endProgram();
+                }
+            })
+    }
+    // end program
+    const endProgram = () => {
+        let htmlContent = teamPageTemplate.htmlGenerator(team);
+        createTeamHTMLPage(htmlContent);
+    }
+        
 }
 
 runApp();
