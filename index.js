@@ -37,6 +37,8 @@ function runApp() {
             message: "What is your team manager's office number?",
         },
     ]).then(answers => {
+        // I need to store this info based on manager, engineer, and intern
+        // so that I can call this information later on
         console.log(answers);
     })
 
