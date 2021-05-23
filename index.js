@@ -15,6 +15,8 @@ pageTemplate(team);
 // FS WRITEFILE
 
 // OUTPUT HTML FILES WILL LAND IN DIST FOLDER
+const membersArray = [];
+
 function runApp() {
     inquirer.prompt([
         {
@@ -43,8 +45,9 @@ function runApp() {
         console.log(answers);
         const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNum);
         console.log(manager);
+        membersArray.push(manager);
+        console.log(membersArray);
     })
-
 }
 
 runApp();
