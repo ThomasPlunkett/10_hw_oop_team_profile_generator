@@ -41,6 +41,8 @@ function runApp() {
         // I need to store this info based on manager, engineer, and intern
         // so that I can call this information later on
         console.log(answers);
+        const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNum);
+        console.log(manager);
     })
 
 }
