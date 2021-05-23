@@ -39,4 +39,7 @@ function runApp() {
     ]).then(answers => {
         console.log(answers);
     })
+
 }
+
+runApp();
