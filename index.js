@@ -99,11 +99,11 @@ function runApp() {
                 message: 'Would you like to add an Engineer, an Intern, or end the program?',
                 choices: ['Add an Engineer', 'Add an Intern', 'End the program'],
             }])
-            // console.log("addEngineer was called");
+
             .then((answers) => {
                 const engineer = new Engineer(answers.engineerName, answers.engineerID, answers.engineerEmail, answers.engineerGitHub);
     
-                team.push(engineer);
+                membersArray.push(engineer);
     
                 if (answers.chooseType === "Add an Engineer") {
                     addEngineer();
