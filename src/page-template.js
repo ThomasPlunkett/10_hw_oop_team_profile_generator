@@ -1,13 +1,3 @@
-// GENERATE THE HTML PAGES
-const generateTeam  = team => {
-    // a method for a template to render manager info
-
-    // a method for a template to render engineer info
-
-    // a method for a template to render intern info
-// const generateManager = manager = {
-//     return `${manager.getName()} etc etc`
-// }    
 const htmlGenerator = (team) => {
     const head = `<head>
     <meta charset="utf-8">
@@ -88,6 +78,8 @@ const htmlGenerator = (team) => {
                 break;
         }
     });
+
+    // return "<div>NEW</div>"
     return `<!DOCTYPE html><html>${head} ${body} ${footer}`
 }
 
