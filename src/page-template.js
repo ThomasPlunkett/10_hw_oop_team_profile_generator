@@ -8,43 +8,90 @@ const generateTeam  = team => {
 // const generateManager = manager = {
 //     return `${manager.getName()} etc etc`
 // }    
-const html = [];
-    html.push(team
-        .filter(employee => employee.getRole() === "Manager")
-        .map(manager => generateManager(manager))
-    );
-    return html.join("");
+const htmlGenerator = (team) => {
+    const head = `<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Team Profile</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles.css">
+    <script src="https://kit.fontawesome.com/563b95b7bc.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">My Team</h1>
+        </div>
+    </div>
+    <main class="team-cards">`;
+
+    const footer = `</main>
+    <script src="" async defer></script>
+    </body>
+    </html>`;
+
+    let body = '';
+    team.forEach(member => {
+        console.log(member, '******* member *******')
+        const role = member.getRole()
+        switch (role) {
+            case 'Manager':
+                body = body + `<div class="individual-card">
+                <div class="card-header">
+                    <h2>${member.name}</h2>
+                    <h3>${role}</h3>
+                </div>
+                <div class="card-list">
+                    <ul class="list-group">
+                        <li class="list-group-item">ID: ${member.id}</li>
+                        <li class="list-group-item">Email: <a href="mailto:${member.email}">${member.email}</a></li>
+                        <li class="list-group-item">Office Number: ${member.officeNumber}</li>
+                      </ul>
+                </div>
+    
+            </div>`
+                break;
+            case 'Intern':
+                body = body + `<div class="individual-card">
+                <div class="card-header">
+                    <h2>${member.name}</h2>
+                    <h3>${role}</h3>
+                </div>
+                <div class="card-list">
+                    <ul class="list-group">
+                        <li class="list-group-item">ID: ${member.id}</li>
+                        <li class="list-group-item">Email: <a href="mailto:${member.email}">${member.email}</a></li>
+                        <li class="list-group-item">Intern School: ${member.internSchool}</li>
+                      </ul>
+                </div>
+    
+            </div>`
+                break;
+            case 'Engineer':
+                body = body + `<div class="individual-card">
+                <div class="card-header">
+                    <h2>${member.name}</h2>
+                    <h3>${role}</h3>
+                </div>
+                <div class="card-list">
+                    <ul class="list-group">
+                        <li class="list-group-item">ID: ${member.id}</li>
+                        <li class="list-group-item">Email: <a href="mailto:${member.email}">${member.email}</a></li>
+                        <li class="list-group-item">GitHub: <a href="https://www.github.com/${member.gitHubUser}">${member.gitHubUser}</a></li>
+                      </ul>
+                </div>
+    
+            </div>`
+                break;
+        }
+    });
+    return `<!DOCTYPE html><html>${head} ${body} ${footer}`
 }
 
-// export out an anonymous function
-module.exports = team => {
-    return `
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel=”stylesheet” href=”https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css”rel=”nofollow” integrity=”sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm” crossorigin=”anonymous”>
-<script src="https://kit.fontawesome.com/563b95b7bc.js" crossorigin="anonymous"></script>   
-    <title>Document</title>
-</head>
-<body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12 jumbotron mb-3 team-heading">
-                <h1 class="text-center">My Team</h1>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="team-area col-12 d-flex justify-content-center">
 
-            </div>
-        </div>
-    </div>
-</body>
-</html>
-    `
+module.exports = {
+    htmlGenerator
 }
