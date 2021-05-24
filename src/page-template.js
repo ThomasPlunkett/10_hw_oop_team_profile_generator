@@ -79,7 +79,7 @@ const htmlGenerator = (team) => {
         }
     });
 
-    // return "<div>NEW</div>"
+    
     return `<!DOCTYPE html><html>${head} ${body} ${footer}`
 }
 

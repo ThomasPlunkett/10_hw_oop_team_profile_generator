@@ -3,7 +3,7 @@ const fs = require('fs');
 const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
 const Manager = require('./lib/manager');
-const teamPageTemplate = require('./src/page-template'); // This is a function I can call and pass team into it
+const teamPageTemplate = require('./src/page-template'); 
 const path = require("path");
 
 
@@ -14,7 +14,6 @@ const team = [];
 
 
 function createTeamHTMLPage(htmlContent) {
-    // Create the output directory if the output path doesn't exist
     if (!fs.existsSync(OUTPUT_DIR)) {
         fs.mkdirSync(OUTPUT_DIR)
     }
@@ -49,7 +48,7 @@ const addIntern = () => {
             message: 'Would you like to add an Engineer, an Intern, or quit the program?',
             choices: ['Add an Engineer', 'Add an Intern', 'Quit the Program'],
         }])
-        // console.log("addEngineer was called");
+    
         .then((answers) => {
             const intern = new Intern(answers.internName, answers.internID, answers.internEmail, answers.internSchool);
 
@@ -93,7 +92,7 @@ const addEngineer = () => {
             message: 'Would you like to add an Engineer, an Intern, or quit the program?',
             choices: ['Add an Engineer', 'Add an Intern', 'Quit the Program'],
         }])
-        // console.log("addEngineer was called");
+        
         .then((answers) => {
             const engineer = new Engineer(answers.engineerName, answers.engineerID, answers.engineerEmail, answers.engineerGitHub);
 
@@ -112,9 +111,9 @@ const addEngineer = () => {
 const quitProgram = () => {
     console.log(team);
     let htmlContent = teamPageTemplate.htmlGenerator(team);
-    // console.log(htmlContent);
+   
     createTeamHTMLPage(htmlContent);
-    // Need to take the team array and pass that into a function to build the HTML based on a template - need this to return a string of HTML for the page.
+    
     console.log("\n");
 }
 
@@ -148,7 +147,7 @@ inquirer
             choices: ['Add an Engineer', 'Add an Intern', 'Quit the Program'],
         }])
     .then((answers) => {
-        // IF THEY CHOSE ENGINEER - CALL THE addEngineer
+        
         const manager = new Manager(answers.managerName, answers.managerID, answers.managerEmail, answers.managerNumber);
 
         team.push(manager);
